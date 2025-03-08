@@ -1,0 +1,18 @@
+# Ignore .DS_Store files from all folders
+**/.DS_Store
+
+# Ignore all files in /ollama/ollama-webui
+/ollama/ollama-webui/*
+
+# Ignore all files in /ollama/ollama/models
+/ollama/ollama/models/*
+
+# Ignore all files in /ollama/ollama
+/ollama/ollama/*
+
+# Ignore Jupyter runtime files
+/files/work/.local/share/jupyter/runtime
+
+# Ignore HowToUse.ipynb file
+files/work/HowToUse.ipynb
+*.log
