@@ -22,7 +22,7 @@ This project is an implementation of a stack based on Docker (docker-compose) us
 git clone https://github.com/hyper07/apan-project.git
 
 # Move to the project directory
-cd docker-mongo-postgres/
+cd apan-project/
 
 # Build and run the containers
 docker-compose up -d
