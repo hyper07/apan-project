@@ -15,3 +15,4 @@ files/work/HowToUse.ipynb
 
 # Ignore log files
 *.log
+/files/work/.ipython
