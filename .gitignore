@@ -24,3 +24,5 @@ files/work/.jupyter/lab/workspaces/default-37a8.jupyterlab-workspace
 /files/work/.jupyter
 /ollama/ollama-webui
 /files/work/.local
+/files/work/.ipython
+/app-flask/__pycache__
