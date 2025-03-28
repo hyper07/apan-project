@@ -59,6 +59,7 @@ docker-compose down
 ### Flask App
 
 - **Web Interface**: [http://localhost:5010](http://localhost:5010)
+- **Web Sample Form**: [http://localhost:5010/form](http://localhost:5010/form)
 
 ### Streamlit App
 
