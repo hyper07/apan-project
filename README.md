@@ -125,6 +125,10 @@ docker exec -ti apan-ollama ollama pull qwen2.5-coder
 For detailed instructions on how to access and interact with the databases, 
 refer to the [HowToUse.md guide](https://github.com/hyper07/apan-project/blob/main/files/work/HowToUse.md).
 
+
+## Data Migration with nodejs for postgresql
+![data migration](./app-streamlit/images/Migration.gif)
+
 ## Additional Information
 
 - **Docker Network**: All services are connected via a custom Docker network `apan-net`.
