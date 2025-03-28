@@ -128,8 +128,9 @@ docker exec -ti apan-ollama ollama pull qwen2.5-coder
 
 
 # HOW TO ACCESS DATABASE AND API
-For detailed instructions on how to access and interact with the databases, 
-refer to the [HowToUse.md guide](https://github.com/hyper07/apan-project/blob/main/files/work/HowToUse.md).
+For detailed instructions on how to access and interact with the databases
+
+- **How to access dbs**: [How To Access](https://github.com/hyper07/apan-project/blob/main/files/work/HowToUse.md).
 
 
 ## Data Migration with nodejs for postgresql
