@@ -9,11 +9,10 @@ This project is an implementation of a stack based on Docker (docker-compose) us
 - **Express JS (Node.js)**: Web framework for Node.js
 - **Flask**: Micro web framework for Python
 - **Jupyter**: Interactive computing environment
-- **PgAdmin**: Web-based PostgreSQL administration tool
-- **Adminer**: Database management tool
 - **Streamlit**: Web app framework for Machine Learning and Data Science
 - **Ollama**: AI model hosting and management
 - **Ollama WebUI**: Web interface for managing AI models
+- **Neo4j**: Graph database (newly added)
 
 ## Building & Running
 
@@ -35,7 +34,6 @@ docker-compose down
 
 ### MongoDB
 
-- **Web Interface (Mongo Express)**: [http://localhost:8082](http://localhost:8082)
 - **Connection String**:
   ```python
   from pymongo import MongoClient
@@ -58,10 +56,6 @@ docker-compose down
 
 - **Web Interface**: [http://localhost:8899](http://localhost:8899)
 
-### Adminer
-
-- **Web Interface**: [http://localhost:9080](http://localhost:9080)
-
 ### Flask App
 
 - **Web Interface**: [http://localhost:5010](http://localhost:5010)
@@ -74,9 +68,26 @@ docker-compose down
 
 - **API Endpoint**: [http://localhost:37869](http://localhost:37869)
 
+# Download the Ollama model
+```sh
+docker exec -ti apan-ollama ollama pull llama3.2:1b
+# or 
+docker exec -ti apan-ollama ollama pull qwen2.5-coder
+```
+
 ### Ollama WebUI
 
 - **Web Interface**: [http://localhost:38080](http://localhost:38080)
+
+### Neo4j
+
+- **Web Interface**: [http://localhost:7474](http://localhost:7474)
+- **Bolt Protocol**: `bolt://localhost:7687`
+- **Connection Details**:
+  ```
+  Username: neo4j
+  Password: password
+  ```
 
 ## Additional Information
 

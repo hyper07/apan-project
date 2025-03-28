@@ -1,4 +1,4 @@
-streamlit==1.37.0
+streamlit
 streamlit-aggrid
 streamlit_option_menu
 streamlit-feedback
@@ -41,6 +41,7 @@ langchain-openai
 tiktoken
 sentence-transformers
 tf-keras
+ollama
 
 #“unstructured[md,pdf,pptx]”
 unstructured-client
