@@ -121,6 +121,12 @@ docker exec -ti apan-ollama ollama pull qwen2.5-coder
 
 - **Web Interface**: [http://localhost:8081](http://localhost:8081)
 
+
+### NodeJS API document
+
+- **API Document**: [http://localhost:3100/api/v1/api-docs](http://localhost:3100/api/v1/api-docs)
+
+
 # HOW TO ACCESS DATABASE AND API
 For detailed instructions on how to access and interact with the databases, 
 refer to the [HowToUse.md guide](https://github.com/hyper07/apan-project/blob/main/files/work/HowToUse.md).
