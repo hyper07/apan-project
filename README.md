@@ -1,12 +1,12 @@
 # APAN All-in-One Docker Stack
 
-This project is an implementation of a stack based on Docker (docker-compose) using MongoDB, PostgreSQL, Express JS (Node.js), Flask, Jupyter, and more.
+This project is an implementation of a stack based on Docker (docker-compose) using MongoDB, PostgreSQL, Neo4j, Node.js, Flask, Jupyter, and more.
 
 ## Features
 
 - **MongoDB**: NoSQL database
 - **PostgreSQL**: Relational database
-- **Express JS (Node.js)**: Web framework for Node.js
+- **NodeJS API**: Build DB structure and create API
 - **Flask**: Micro web framework for Python
 - **Jupyter**: Interactive computing environment
 - **Streamlit**: Web app framework for Machine Learning and Data Science
@@ -79,15 +79,46 @@ docker exec -ti apan-ollama ollama pull qwen2.5-coder
 
 - **Web Interface**: [http://localhost:38080](http://localhost:38080)
 
+![select model](./app-streamlit/images/select_llm.png)
+
+#### Download LLM Models
+
+To download a model, use the following command:
+```sh
+docker exec -ti apan-ollama ollama pull <model-name>
+```
+For example:
+```sh
+docker exec -ti apan-ollama ollama pull llama3.2:1b
+docker exec -ti apan-ollama ollama pull qwen2.5-coder
+```
+![download model](./app-streamlit/images/download_llm.png)
+
+
+#### Select a Model in the WebUI
+
+1. Open the Ollama WebUI at [http://localhost:38080](http://localhost:38080).
+2. Navigate to the "Models" section.
+3. Select the desired model from the list or upload a custom model.
+4. Save the configuration and start using the selected model.
+
 ### Neo4j
 
-- **Web Interface**: [http://localhost:7474](http://localhost:7474)
-- **Bolt Protocol**: `bolt://localhost:7687`
+- **Web Interface**: [http://localhost:7874](http://localhost:7874)
+- **Bolt Protocol**: `bolt://localhost:7887`
 - **Connection Details**:
   ```
   Username: neo4j
   Password: password
   ```
+
+### Adminer
+
+- **Web Interface**: [http://localhost:9080](http://localhost:9080)
+
+### Mongo Express
+
+- **Web Interface**: [http://localhost:8081](http://localhost:8081)
 
 ## Additional Information
 
