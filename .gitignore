@@ -18,3 +18,8 @@ files/work/HowToUse.ipynb
 # Ignore log files
 *.log
 /files/work/.ipython
+files/work/.ipython/profile_default/history.sqlite
+files/work/.jupyter/lab/workspaces/default-37a8.jupyterlab-workspace
+/files/work/.local
+/files/work/.jupyter
+/ollama/ollama-webui
