@@ -1,4 +1,3 @@
-
 from pathlib import Path
 import os
 
@@ -27,7 +26,7 @@ import ollama
 
 
 file_path = os.getcwd()
-llm = Ollama(model="llama3.2:1b", base_url="http://host.docker.internal:37869", verbose=True)
+llm = Ollama(model="deepseek-r1:1.5b", base_url="http://host.docker.internal:37869", verbose=True)
 
 sample_file_path = ''
 columns = []
@@ -38,6 +37,18 @@ def sendPrompt(prompt):
     return response
 
 
+CSS = """
+.stChatMessage:has([data-testid="stChatMessageAvatarUser"]) {
+    display: flex;
+    flex-direction: row-reverse;
+    align-itmes: end;
+}
+
+[data-testid="stChatMessageAvatarUser"] + [data-testid="stChatMessageContent"] {
+    text-align: right;
+}
+"""
+st.html(f"<style>{CSS}</style>")
 st.title("Download LLM Models")
 st.write("Check the LLM models from the following links:")
 st.write("[OPEN SOURCE LLMs](https://ollama.com/library)")
@@ -61,32 +72,17 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.write(message["content"])
         
-if len(st.session_state.messages) > 0 and (st.session_state.messages[0]["role"] != "assistant" or st.session_state.messages[-1]["role"]) != "assistant":
-    with st.chat_message("assistant"):
-        with st.spinner("Checking ..."):
-            # loader = CSVLoader(file_path=sample_file_path,
-            #     csv_args={
-            #         'delimiter': ',',
-            #         'quotechar': '"',
-            #         'fieldnames': columns
-            #     })
-            # data = loader.load()
-            # st.write(data)
-            embeddings = HuggingFaceEmbeddings()
-            index_creator = VectorstoreIndexCreator(embedding=embeddings)
-            docsearch = index_creator.from_loaders([])
-            # st.write(docsearch)
-            # st.write(docsearch.vectorstore.as_retriever())
-            chain=RetrievalQA.from_chain_type(
-                llm=llm,
-                chain_type="stuff",
-                retriever=docsearch.vectorstore.as_retriever(),
-                input_key="question")
+with st.chat_message("assistant"):
+    # Placeholder for the assistant's message
+    message_placeholder = st.empty()
+    response = ""
 
-            query=prompt
-            # query="what type of machine learning model do you recommend to analyze relationship between joined date and inducted date from attached data? Can you give me the machine learning model list only?"
-            if query:
-                response=chain({"question":query})
-                message = {"role": "assistant", "content": response['result']}
-                st.write(response['result'])
-                st.session_state.messages.append(message) 
+    # Use the local LLM defined earlier
+    response_stream = llm.stream(prompt)  # Stream the response
+    for chunk in response_stream:
+        # Remove <think> tags from the chunk
+        chunk = chunk.replace("<think>", "").replace("</think>", "")
+        response += chunk
+        message_placeholder.write(response)  # Update the assistant's message progressively
+
+    st.session_state.messages.append({"role": "assistant", "content": response})
