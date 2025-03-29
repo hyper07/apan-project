@@ -74,12 +74,12 @@ for message in st.session_state.messages:
         
 with st.chat_message("assistant"):
     # Placeholder for the assistant's message
-
+    message_placeholder = st.empty()
+    response = ""
 
     # Retrieve the last user prompt from session state
     if st.session_state.messages and st.session_state.messages[-1]["role"] == "user":
-        message_placeholder = st.empty()
-        response = ""
+
         prompt = st.session_state.messages[-1]["content"]
 
         # Use the local LLM defined earlier
