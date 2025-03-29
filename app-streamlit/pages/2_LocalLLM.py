@@ -58,7 +58,15 @@ st.write("Run 'docker exec -ti apan-ollama ollama pull llama3.2:1b' on the comma
 st.image(file_path+"/images/download_llm.png", width=700)
 
 
+# Automatically reset chat logs when the page loads
+if "messages" in st.session_state:
+    st.session_state.messages = []  # Clear chat logs
+
 st.title("Sample Chat UI")
+
+# Add a button to reset chat logs
+if st.button("Reset Chat"):
+    st.session_state.messages = []  # Clear chat logs
 
 if "messages" not in st.session_state.keys(): 
         st.session_state.messages = [
@@ -77,12 +85,16 @@ with st.chat_message("assistant"):
     message_placeholder = st.empty()
     response = ""
 
-    # Use the local LLM defined earlier
-    response_stream = llm.stream(prompt)  # Stream the response
-    for chunk in response_stream:
-        # Remove <think> tags from the chunk
-        chunk = chunk.replace("<think>", "").replace("</think>", "")
-        response += chunk
-        message_placeholder.write(response)  # Update the assistant's message progressively
+    # Retrieve the last user prompt from session state
+    if st.session_state.messages and st.session_state.messages[-1]["role"] == "user":
+        prompt = st.session_state.messages[-1]["content"]
 
-    st.session_state.messages.append({"role": "assistant", "content": response})
+        # Use the local LLM defined earlier
+        response_stream = llm.stream(prompt)  # Stream the response
+        for chunk in response_stream:
+            # Remove <think> tags from the chunk
+            chunk = chunk.replace("<think>", "").replace("</think>", "")
+            response += chunk
+            message_placeholder.write(response)  # Update the assistant's message progressively
+
+        st.session_state.messages.append({"role": "assistant", "content": response})

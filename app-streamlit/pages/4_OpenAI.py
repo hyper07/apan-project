@@ -1,6 +1,7 @@
 from openai import OpenAI
 import streamlit as st
 
+
 CSS = """
 .stChatMessage:has([data-testid="stChatMessageAvatarUser"]) {
     display: flex;
@@ -13,6 +14,10 @@ CSS = """
 }
 """
 st.html(f"<style>{CSS}</style>")
+
+if "messages" in st.session_state:
+    st.session_state.messages = []  # Clear chat logs
+
 
 with st.sidebar:
     openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")

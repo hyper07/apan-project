@@ -31,12 +31,10 @@ llm = Ollama(model="deepseek-r1:1.5b", base_url="http://host.docker.internal:378
 sample_file_path = ''
 columns = []
 
-def sendPrompt(prompt):
-    global llm
-    response = llm.invoke(prompt)
-    return response
-
-
+# Automatically reset chat logs when the page loads
+if "messages" in st.session_state:
+    st.session_state.messages = []  # Clear chat logs
+    
 CSS = """
 .stChatMessage:has([data-testid="stChatMessageAvatarUser"]) {
     display: flex;
@@ -122,10 +120,10 @@ if len(st.session_state.messages) > 0 and (st.session_state.messages[0]["role"] 
                     'fieldnames': columns
                 })
             data = loader.load()
-            # st.write(data)
             embeddings = HuggingFaceEmbeddings()
             index_creator = VectorstoreIndexCreator(embedding=embeddings)
             docsearch = index_creator.from_loaders([loader])
+            # st.write(data)
             # st.write(docsearch)
             # st.write(docsearch.vectorstore.as_retriever())
             chain=RetrievalQA.from_chain_type(
@@ -139,18 +137,17 @@ if len(st.session_state.messages) > 0 and (st.session_state.messages[0]["role"] 
             message_placeholder = st.empty()
             response = ""
             if query:
-                response = chain.stream(
+                response_generator = chain.stream(
                     {"question": query},
                     callbacks=[StreamingStdOutCallbackHandler()]
                 )
+                response = ""
+                for chunk in response_generator:
+                    message_placeholder.write(chunk)
+                    # Remove <think> tags from the chunk
+                    if chunk['result'] is not None:
+                        chunk['result'] = chunk['result'].replace("<think>", "").replace("</think>", "")
+                        response += chunk['result']
+                        message_placeholder.write(response)  # Update the assistant's message progressively
 
-                response_content = ""
-                for chunk in response:
-                    response_content += chunk['result']
-                    # Display the response incrementally
-                  
-                    st.write(response_content)
-                # Append the final response to session state
-                message = {"role": "assistant", "content": response_content}
-                st.session_state.messages.append(message)
-
+                st.session_state.messages.append({"role": "assistant", "content": response})

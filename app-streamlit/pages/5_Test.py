@@ -8,6 +8,9 @@ from langchain.callbacks.streaming_stdout_final_only import FinalStreamingStdOut
 search_internet = st.checkbox("check internet?", value=False, key="internet")
 prompt = st.text_input("prompt", value="", key="prompt")
 
+if "messages" in st.session_state:
+    st.session_state.messages = []  # Clear chat logs
+    
 if prompt!="":
     response = ""
     if not search_internet:
