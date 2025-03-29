@@ -31,9 +31,6 @@ llm = Ollama(model="deepseek-r1:1.5b", base_url="http://host.docker.internal:378
 sample_file_path = ''
 columns = []
 
-# Automatically reset chat logs when the page loads
-if "messages" in st.session_state:
-    st.session_state.messages = []  # Clear chat logs
     
 CSS = """
 .stChatMessage:has([data-testid="stChatMessageAvatarUser"]) {
