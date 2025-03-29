@@ -13,6 +13,9 @@ COPY ../requirements/streamlit/requirements-dev.txt /usr/src/app/requirements-de
 # RUN apt-get update && apt-get install -y libgomp1 libglib2.0-0
 RUN apt-get update && apt-get install -y libgl1 libgomp1 libglib2.0-0
 
+RUN apt-get update && apt-get -y install --no-install-recommends \
+    curl sqlite3 libsqlite3-dev gcc 
+
 # dependencies
 RUN pip install --upgrade pip setuptools wheel \
     # && set -x HDF5_DIR "$(brew --prefix hdf5)" \

@@ -63,6 +63,7 @@ if "messages" not in st.session_state.keys():
 
 uploaded_file = st.file_uploader(
             "",
+            type='csv',
             key="1",
             help="To activate 'wide mode', go to the hamburger menu > Settings > turn on 'wide mode'",
         )   
