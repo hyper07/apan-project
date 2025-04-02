@@ -65,6 +65,9 @@ docker-compose down
 
 - **Web Interface**: [http://localhost:18501](http://localhost:18501)
 
+![steamlit application](./app-streamlit/images/examples.png)
+
+
 ### Ollama
 
 - **API Endpoint**: [http://localhost:37869](http://localhost:37869)
