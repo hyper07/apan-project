@@ -22,7 +22,6 @@ import streamlit as st
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 import pandas as pd
 
-import ollama
 
 
 file_path = os.getcwd()

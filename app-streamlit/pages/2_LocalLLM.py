@@ -22,8 +22,6 @@ import streamlit as st
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 import pandas as pd
 
-import ollama
-
 
 file_path = os.getcwd()
 llm = Ollama(model="deepseek-r1:1.5b", base_url="http://host.docker.internal:37869", verbose=True)
@@ -84,6 +82,8 @@ with st.chat_message("assistant"):
 
         # Use the local LLM defined earlier
         response_stream = llm.stream(prompt)  # Stream the response
+        llm.get_response(prompt)
+        llm.invoke(prompt)
         for chunk in response_stream:
             # Remove <think> tags from the chunk
             chunk = chunk.replace("<think>", "").replace("</think>", "")
