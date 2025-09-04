@@ -27,3 +27,6 @@ files/work/.jupyter/lab/workspaces/default-37a8.jupyterlab-workspace
 /files/work/.ipython
 /app-flask/__pycache__
 /files/temp
+app-flask/__pycache__/app.cpython-311.pyc
+/app-flask/__pycache__
+/files/work/.ipynb_checkpoints

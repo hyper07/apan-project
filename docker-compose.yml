@@ -195,6 +195,20 @@ services:
     networks:
       - apan-net
 
+  apan-fast-api:
+    container_name: apan-fast-api
+    build:
+      context: .
+      dockerfile: ./docker/fastapi/Dockerfile
+    ports:
+      - 5011:5011
+    volumes:
+      - ./app-fastapi:/app
+    environment:
+      - FASTAPI_APP=app.py
+    networks:
+      - apan-net
+
   apan-api:
     build:
       context: ./server
