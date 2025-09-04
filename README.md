@@ -8,6 +8,7 @@ This project is an implementation of a stack based on Docker (docker-compose) us
 - **PostgreSQL**: Relational database
 - **NodeJS API**: Build DB structure and create API
 - **Flask**: Micro web framework for Python
+- **FastAPI**: Modern, fast web framework for building APIs with Python
 - **Jupyter**: Interactive computing environment
 - **Streamlit**: Web app framework for Machine Learning and Data Science
 - **Ollama**: AI model hosting and management
@@ -60,6 +61,12 @@ docker-compose down
 
 - **Web Interface**: [http://localhost:5010](http://localhost:5010)
 - **Web Sample Form**: [http://localhost:5010/form](http://localhost:5010/form)
+
+### FastAPI
+
+- **Web Interface**: [http://localhost:5011](http://localhost:5011)
+- **API Documentation**: [http://localhost:5011/docs](http://localhost:5011/docs)
+- **Health Check**: [http://localhost:5011/health](http://localhost:5011/health)
 
 ### Streamlit App
 
